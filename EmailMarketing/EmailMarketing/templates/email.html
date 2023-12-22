@@ -1,51 +1,7 @@
 {% include 'header.html' %}
-
-<form action="{% url 'create' %}" method="POST">
+<form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-        <label for="validationServer01">email</label>
-        <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Nome" value="Mark" required>
-        <div class="valid-feedback">
-          Tudo certo!
-        </div>
-
-        <label for="validationServer02">senha</label>
-        <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Sobrenome" value="Otto" required>
-        <div class="valid-feedback">
-          Tudo certo!
-    
-      </div>
-          <label for="validationServer03">assunto</label>
-          <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="Cidade" required>
-          <div class="invalid-feedback">
-            Por favor, informe uma cidade válida.
-          </div>
-    
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1">destinatarios </label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-        
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Email</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-          <label for="validationServer03">anexo</label>
-          <div class="custom-file">
-            
-            <input type="file" class="custom-file-input" id="customFileLang" lang="es">
-            <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
-          </div>
-    <div class="form-group ">
-      <div class="form-check">
-        <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
-        <label class="form-check-label" for="invalidCheck3">
-          Concordo com os termos e condições
-        </label>
-        <div class="invalid-feedback">
-          Você deve concordar, antes de continuar.
-        </div>
-      </div>
-    </div>
-    <button class="btn btn-primary" type="submit">Enviar</button>
-  </form>
+  {{ form.as_p }}
+  <button type="submit">Enviar</button>
+</form>
 {% include 'footer.html' %}

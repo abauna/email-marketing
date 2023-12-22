@@ -27,5 +27,5 @@ urlpatterns = [
   path('sobre', views.sobre),
   path('email', views.email,name='email'),
   path('contato', views.contato),
-  path('email/create/', views.email_create, name='create'),
+  
 ]
