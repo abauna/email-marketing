@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
+
     <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{% static 'static/form_logic.js' %}"></script>
+    {% load static %}
+    <script src="{% static '/js/form_logic.js' %}"></script>
 
 
     <!-- Bootstrap CSS -->
@@ -20,17 +22,17 @@
             
             <li class="nav-item ">
                 <button class="btn btn-outline-success" type="button">
-                <a class="nav-link" href="#">inicio <span class="sr-only">(Página atual)</span></a>
+                <a class="nav-link" href="/home">repocisoes <span class="sr-only">(Página atual)</span></a>
                 </button>
             </li>
             <li class="nav-item">
                 <button class="btn btn-outline-success" type="button">
-              <a class="nav-link" href="/email">enviar email</a>
+              <a class="nav-link" href="/lista_reposicoes">lista de repocicoes</a>
             </button>
         </li>
         <li class="nav-item">
             <button class="btn btn-outline-success" type="button">
-              <a class="nav-link" href="/sobre">sobre</a>
+              <a class="nav-link" href="/teste">teste</a>
             </button>
         </li>
         <li class="nav-item">

@@ -1,0 +1,19 @@
+{% include 'header.html' %}
+
+<!-- sucesso.html -->
+{% if dados_formulario %}
+    <h1>Parabéns! Sua aula foi marcada com os seguintes detalhes:</h1>
+    <p>Dia da Falta: {{ dados_formulario.dia_da_falta }}</p>
+    <p>Dia da Reposição: {{ dados_formulario.dia }}</p>
+    <p>Hora da Reposição: {{ dados_formulario.hora }}</p>
+    <p>Conteúdo: {{ dados_formulario.conteudo }}</p>
+    <p>Nome do Aluno: {{ dados_formulario.nome_aluno }}</p>
+    <p>Curso: {{ dados_formulario.curso }}</p>
+    <p>Professor: {{ dados_formulario.professor }}</p>
+    <p>Concordo com os termos de uso: {{ dados_formulario.concordo }}</p>
+    <!-- Adicione outros campos do formulário que deseja exibir -->
+{% else %}
+    <p>Nenhum dado recebido.</p>
+{% endif %}
+
+{% include 'footer.html' %}

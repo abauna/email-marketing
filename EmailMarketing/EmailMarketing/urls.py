@@ -24,7 +24,10 @@ app_name = 'EmailMarketing'
 urlpatterns = [
     
   path('admin/', admin.site.urls),
-  path('get_professores/', views.get_professores, name='get_professores'),
-  path('gerenciar_professores', views.gerencia),
-  path('', views.enviar_email, name='enviar_email'),# Home
+  path('lista_reposicoes/', views.listar_reposicoes, name='lista_reposicoes'),
+  path('', views.enviar_email, name='enviar_email'),
+  path('home/', views.enviar_email, name='enviar_email'),# Home
+  path('sucesso/', views.sucesso, name='sucesso'),
+  path('teste/', views.teste, name='teste'),
+
 ]

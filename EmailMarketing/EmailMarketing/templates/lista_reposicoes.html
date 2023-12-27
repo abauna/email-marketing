@@ -1,0 +1,52 @@
+{% include 'header.html' %}
+
+<h1>Lista de Reposições</h1>
+
+<form method="GET" id="filtro-form">
+    {% csrf_token %}
+    <div class="form-group row">
+        <label for="id_curso" class="col-sm-2 col-form-label">Curso:</label>
+        <select name="curso" id="id_curso" class="col-sm-2 form-control">
+            <option value="">Selecione o Curso</option>
+            <option value="curso1">Curso de Inglês</option>
+            <option value="curso2">Curso de Informática</option>
+        </select>
+    </div>
+    <div class="form-group row">
+        <label for="id_professor" class="col-sm-2 col-form-label">Professor:</label>
+        <select name="professor" id="id_professor" class="col-sm-2 form-control">
+            <!-- Options serão preenchidas dinamicamente -->
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+</form>
+
+<div class="card-container">
+    {% for reposicao in reposicoes %}
+    <div class="card">
+        <h1>Lista de Reposições</h1>
+
+        <div class="card-container">
+            {% for reposicao in reposicoes %}
+            <div class="card">
+                <h2>{{ reposicao.nome_aluno }}</h2>
+                <p><strong>Curso:</strong> {{ reposicao.curso }}</p>
+                <p><strong>Professor:</strong> {{ reposicao.professor }}</p>
+                <p><strong>Data da Falta:</strong> {{ reposicao.dia_da_falta }}</p>
+                <p><strong>Data da Reposição:</strong> {{ reposicao.dia }}</p>
+                <p><strong>Hora da Reposição:</strong> {{ reposicao.hora }}</p>
+                <p><strong>Conteúdo:</strong> {{ reposicao.conteudo }}</p>
+                <p><strong>Concordo:</strong> {{ reposicao.concordo }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+    {% empty %}
+    <p>Nenhum resultado encontrado.</p>
+    {% endfor %}
+</div>
+
+
+
+{% include 'footer.html' %}
