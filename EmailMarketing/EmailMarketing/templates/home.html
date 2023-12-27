@@ -1,4 +1,68 @@
 {% include 'header.html' %}
 
-home
+<h1>Formulário para Reposição</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group row">
+        <label for="id_nome_aluno" class="col-sm-2 col-form-label">Nome do Aluno:</label>
+        <div class="col-sm-10">
+            {{ form.nome_aluno }}
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="id_curso" class="col-sm-2 col-form-label">Curso:</label>
+        <select name="curso" id="id_curso" class="col-sm-2 form-control  ">
+            <option value="">Selecione o Curso</option>
+            <option value="curso1">Curso de Inglês</option>
+            <option value="curso2">Curso de Informática</option>
+        </select>
+    </div>
+
+    <div class="form-group row">
+        <label for="id_professor "class="col-sm-2 col-form-label">Professor:</label>
+        <select name="professor" id="id_professor" class="col-sm-2 form-control">
+            <!-- Options serão preenchidas dinamicamente -->
+        </select>
+    </div>
+    <div class="form-group row">
+        <label for="id_dia_da_falta" class="col-sm-2 col-form-label">Data da Falta:</label>
+        <div class="col-sm-10">
+            {{ form.dia_da_falta }}
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="id_dia" class="col-sm-2 col-form-label">Data da Reposição:</label>
+        <div class="col-sm-10">
+            {{ form.dia }}
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="id_hora" class="col-sm-2 col-form-label">Hora da Reposição:</label>
+        <div class="col-sm-10">
+            {{ form.hora }}
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="id_conteudo "class="col-sm-2 col-form-label">Conteudo:</label>
+        <select name="professor" id="id_conteudo" class="col-sm-2 form-control">
+            <!-- Options serão preenchidas dinamicamente -->
+        </select>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+            <div class="form-check">
+                {{ form.concordo }}
+                <label class="form-check-label" for="id_concordo">Concordo com os termos de uso</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </div>
+</form>
+
+
 {% include 'footer.html' %}

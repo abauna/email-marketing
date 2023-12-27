@@ -22,10 +22,9 @@ from . import views
 app_name = 'EmailMarketing'
 
 urlpatterns = [
+    
   path('admin/', admin.site.urls),
-  path('', views.home),# Home
-  path('sobre', views.sobre),
-  path('email', views.email,name='email'),
-  path('contato', views.contato),
-  
+  path('get_professores/', views.get_professores, name='get_professores'),
+  path('gerenciar_professores', views.gerencia),
+  path('', views.enviar_email, name='enviar_email'),# Home
 ]
