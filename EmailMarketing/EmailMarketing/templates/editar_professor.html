@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Disponibilidade do Professor: {{ professor.nome }}</title>
+    <style>
+        /* Estilos para a tabela */
+    </style>
+</head>
+<body>
+    <h1>Disponibilidade do Professor: {{ professor.nome }}</h1>
+    
+    <table id="tableData">
+        <thead>
+            <tr>
+                <th>Horário</th>
+                {% for dia, _ in professor.disponibilidade.items %}
+                    <th>{{ dia }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in "123456789101112" %}
+            <tr>
+                <td>{{ i }}</td>
+                {% for _, disponibilidade in professor.disponibilidade.items %}
+                    <td>{{ disponibilidade[i|int-1] == 1 ? 'Disponível' : 'Indisponível' }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        // JavaScript não pode diretamente iterar sobre variáveis do Django
+        // Portanto, este exemplo assume que os dados já estão renderizados na tabela no formato desejado
+
+        // Neste caso, a tabela já está renderizada com os dados invertidos
+
+        let table = document.getElementById('tableData');
+        let disponibilidade = {};
+
+        // Iterando pelas linhas da tabela, começando do segundo índice (pois o primeiro é o cabeçalho)
+        for (let i = 1; i < table.rows.length; i++) {
+            let horario = table.rows[i].cells[0].innerText; // Obtendo o horário
+
+            // Iterando pelas colunas da tabela, começando do segundo índice (pois o primeiro é o cabeçalho)
+            for (let j = 1; j < table.rows[i].cells.length; j++) {
+                let dia = table.rows[0].cells[j].innerText; // Obtendo o dia
+                let status = table.rows[i].cells[j].innerText.trim(); // Obtendo o status
+
+                // Armazenando os dados invertidos em um objeto
+                if (!disponibilidade[dia]) {
+                    disponibilidade[dia] = {};
+                }
+                disponibilidade[dia][horario] = status;
+            }
+        }
+
+        // Exemplo de exibição dos dados invertidos no console
+        console.log(disponibilidade);
+    </script>
+</body>
+</html>

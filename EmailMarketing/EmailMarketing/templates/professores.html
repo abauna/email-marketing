@@ -1,0 +1,67 @@
+{% include 'header.html' %}
+
+<h1>Professores</h1>
+<ul>
+    {% for professor in professores %}
+    <li>
+        {{ professor.nome }} - 
+        <a href="{% url 'editar_professor' professor.pk %}">Editar</a> - 
+        <a href="{% url 'deletar_professor' professor.pk %}">Deletar</a>
+    </li>
+    {% empty %}
+    <li>Nenhum professor encontrado.</li>
+    {% endfor %}
+</ul>
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group row">
+        <label for="id_nome" class="col-sm-2 col-form-label">Nome do Professor:</label>
+        <div class="col-sm-10">
+            {{ form.nome }}
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="id_curso" class="col-sm-2 col-form-label">Curso:</label>
+        <select name="curso" id="id_curso" class="col-sm-2 form-control  ">
+            <option value="">Selecione o Curso</option>
+            <option value="curso1">Curso de Inglês</option>
+            <option value="curso2">Curso de Informática</option>
+        </select>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Disponibilidade:</label>
+        <div class="col-sm-2">
+            <input type="hidden" id="id_disponibilidade" name="disponibilidade" value="{{ professor.disponibilidade }}">
+            <div class="table-responsive-sm">
+                
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="mini">Horários</th>
+                        <th>Seg</th>
+                        <th>Ter</th>
+                        <th>Qua</th>
+                        <th>Qui</th>
+                        <th>Sex</th>
+                        <th>Sáb</th>
+                    </tr>
+                </thead>
+                
+                <tbody id="tabela-disponibilidade">
+                    
+                
+                </tbody>
+                
+            </table>
+            
+        </div>
+    </div>
+    </div>
+    <button type="submit">Criar</button>
+</form>
+
+
+{% include 'footer.html' %}
+

@@ -1,5 +1,26 @@
 from django import forms
+from .models import Professor
+from django.db import models
 
+
+class ProfessorForm(forms.ModelForm):
+    class Meta:
+        model = Professor
+        fields = ['nome', 'curso', 'disponibilidade']  
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['disponibilidade'].widget.attrs['rows'] = 7 
+
+    def clean(self):
+        cleaned_data = super().clean()
+        disponibilidade = cleaned_data.get('disponibilidade')
+        
+        # Verifica se a disponibilidade está preenchida
+        if not disponibilidade:
+            self.add_error('disponibilidade', 'Este campo é obrigatório.')
+        
+        return cleaned_data
 class ReposicaoForm(forms.Form):
     nome_aluno = forms.CharField(label='Nome do Aluno', required=True)
     curso = forms.CharField(label='Curso', required=True)

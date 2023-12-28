@@ -1,6 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Reposicao
-from .form import ReposicaoForm,FiltroReposicaoForm # Importando o novo formulário
+from .form import ReposicaoForm,FiltroReposicaoForm 
+from .models import Professor
+from .form import ProfessorForm
+from django.http import JsonResponse
+import json
 def teste(request):
     reposicoes = Reposicao.objects.all()  # Pega todas as instâncias do modelo Reposicao
     return render(request, 'teste.html', {'reposicoes': reposicoes})
@@ -54,3 +58,35 @@ def listar_reposicoes(request):
             reposicoes = reposicoes.filter(professor=professor)
 
     return render(request, 'lista_reposicoes.html', {'reposicoes': reposicoes, 'filtro_form': filtro_form})
+def professores(request):
+    professores = Professor.objects.all()
+    form = ProfessorForm()
+  
+    
+    if request.method == 'POST':
+        form = ProfessorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('professores')
+
+    return render(request, 'professores.html', {'professores': professores, 'form': form})
+
+def editar_professor(request, pk):
+    professor = get_object_or_404(Professor, pk=pk)
+    if request.method == 'POST':
+        form = ProfessorForm(request.POST, instance=professor)
+        if form.is_valid():
+            form.save()
+            return redirect('professores')
+    else:
+        form = ProfessorForm(instance=professor)
+    
+    context = {
+        'form': form,
+        'professor': professor  # Adicionando o objeto professor ao contexto
+    }
+    return render(request, 'editar_professor.html', context)
+def deletar_professor(request, pk):
+    professor = get_object_or_404(Professor, pk=pk)
+    professor.delete()
+    return redirect('professores') 

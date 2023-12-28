@@ -1,0 +1,20 @@
+/* styles.css */
+
+/* Estilo para células ocupadas */
+.horario-disponivel.ocupado {
+    background-color: red;
+    cursor: pointer; /* Define o cursor como um indicador de clique */
+}
+
+/* Estilo para células disponíveis */
+.horario-disponivel.disponivel {
+    background-color: green;
+    cursor: pointer; /* Define o cursor como um indicador de clique */
+}
+
+/* Estilo para células padrão (sem marcação de ocupado ou disponível) */
+.horario-disponivel {
+    width: 10px; /* Ajuste o tamanho das células conforme necessário */
+    height: 10px;
+    cursor: pointer; /* Define o cursor como um indicador de clique */
+}

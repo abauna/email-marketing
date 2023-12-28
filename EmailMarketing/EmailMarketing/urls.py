@@ -29,5 +29,7 @@ urlpatterns = [
   path('home/', views.enviar_email, name='enviar_email'),# Home
   path('sucesso/', views.sucesso, name='sucesso'),
   path('teste/', views.teste, name='teste'),
-
+  path('professores/', views.professores, name='professores'),
+     path('professores/<int:pk>/editar/', views.editar_professor, name='editar_professor'),
+  path('professores/deletar/<int:pk>/', views.deletar_professor, name='deletar_professor'),
 ]
